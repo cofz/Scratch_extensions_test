@@ -18,7 +18,9 @@
             callback();
         }, wait*10000);
     };
-
+     ext.power = function(base, exponent) {
+        return Math.pow(base, exponent);
+    };
     // Block and block menu descriptions
     var descriptor = {
         blocks: [ 
@@ -26,7 +28,8 @@
             // Block type, block name, function name
             [' ', 'my first block', 'my_first_block'],
             [' ', 'my second block', 'my_second_block'],
-            ['w', 'wait random', 'wait_random']
+            ['w', 'wait random', 'wait_random'],
+            ['r', '%n ^ %n', 'power', 2, 3],
         ]
     };
 
