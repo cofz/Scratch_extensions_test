@@ -16,7 +16,7 @@
         console.log('Waiting for ' + wait + ' seconds');
         window.setTimeout(function() {
             callback();
-        }, wait*1000);
+        }, wait*10000);
     };
 
     // Block and block menu descriptions
