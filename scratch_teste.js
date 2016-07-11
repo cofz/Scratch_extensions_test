@@ -29,7 +29,7 @@
             [' ', 'my first block', 'my_first_block'],
             [' ', 'my second block', 'my_second_block'],
             ['w', 'wait random', 'wait_random'],
-            ['r', '%n ^ %n', 'power', 2, 3],
+            ['R', '%n ^ %n', 'power', 2, 3],
         ]
     };
 
