@@ -10,7 +10,11 @@
 
     // Block and block menu descriptions
     var descriptor = {
-        blocks: [
+        blocks: [ 
+            
+            // Block type, block name, function name
+            [' ', 'my first block', 'my_first_block'],
+            [' ', 'my second block', 'my_second_block'],
         ]
     };
 
