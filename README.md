@@ -1,2 +1,2 @@
 # Scratch_extensions_test
-Test for creating Experimental Scratch Extensions
+Teste da extensão experimental do Scratch com ESP8266
