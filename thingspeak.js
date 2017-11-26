@@ -40,7 +40,7 @@
     $.ajax({
       type: "GET",
       dataType: "json",
-      url: "https://api.wheretheiss.at/v1/satellites/25544"
+      url: "https://api.wheretheiss.at/v1/satellites/25544",
       //url: "https://api.wheretheiss.at/v1/satellites/25544", //url com arquivo json
       success: function(data) {
         issData = data; //salva os dados do arquivo json na variável data
