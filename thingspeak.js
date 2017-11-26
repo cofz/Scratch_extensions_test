@@ -78,7 +78,7 @@
       ['r', 'current ISS %m.loc', 'getISSInfo', 'longitude']
     ],
     menus: {
-      loc: ['longitude', 'latitude', 'altitude', 'velocity'],
+      loc: ['longitude', 'latitude', 'altitude', 'velocity']
       //measurements: ['kilometers', 'miles']
     },
     url: '---'
