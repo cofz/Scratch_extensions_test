@@ -31,7 +31,8 @@
 
     $.ajax({
       type: "GET",
-      url: "http://nominatim.openstreetmap.org/search/",
+      //url: "http://nominatim.openstreetmap.org/search/",
+      url: "https://thingspeak.com/channels/371940",
       dataType: "jsonp",
       data: {
         format: "json",
@@ -55,8 +56,8 @@
       type: "GET",
       dataType: "json",
       //url: "http://api.open-notify.org/iss-now.json",
-      //url: "https://api.wheretheiss.at/v1/satellites/25544",
-      url: "https://api.thingspeak.com/channels/371940/feeds.json?api_key=MBXXZADBQE1DAK7S&results=2",
+      url: "https://api.wheretheiss.at/v1/satellites/25544",
+      //url: "https://api.thingspeak.com/channels/371940/feeds.json?api_key=MBXXZADBQE1DAK7S&results=2",
       success: function(data) {
         issData = data;
       },
@@ -138,10 +139,10 @@
       loc: ['longitude', 'latitude', 'altitude', 'velocity', 'description'],
       measurements: ['kilometers', 'miles']
     },
-    url: 'http://khanning.github.io/scratch-isstracker-extension'
+    url: 'https://cofz.github.io/Scratch_extensions_test/thingspeak.js'
   };
 
-  ScratchExtensions.register('ISS Tracker', descriptor, ext);
+  ScratchExtensions.register('ThingSpeak', descriptor, ext);
 
   updateISSLocation();
   var poller = setInterval(updateISSLocation, 2000);
