@@ -132,10 +132,10 @@
     blocks: [
       ['h', 'when ISS passes over %s', 'whenISSPasses', 'Boston, MA'],
       ['R', 'distance from %s in %m.measurements', 'distanceFrom', 'Boston, MA', 'kilometers'],
-      ['r', 'current ISS %m.loc', 'getISSInfo', 'longitude', 'description']
+      ['r', 'current ISS %m.loc', 'getISSInfo', 'longitude' ]
     ],
     menus: {
-      loc: ['longitude', 'latitude', 'altitude', 'velocity'],
+      loc: ['longitude', 'latitude', 'altitude', 'velocity', 'description'],
       measurements: ['kilometers', 'miles']
     },
     url: 'http://khanning.github.io/scratch-isstracker-extension'
