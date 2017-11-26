@@ -1,7 +1,4 @@
-/*
- TEST VERSION FOR 
- BASED ON ISS STATION PROTECT BY KREG HANNING
- */
+
 (function(ext) {
 
   var locations = {};
@@ -14,9 +11,9 @@
       return;
     }
 
-    $.ajax({
+$.ajax({
       type: "GET",
-      url: "http://nominatim.openstreetmap.org/search/", //site do satelite
+      url: "http://nominatim.openstreetmap.org/search/",
       dataType: "jsonp",
       data: {
         format: "json",
