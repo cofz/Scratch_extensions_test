@@ -45,7 +45,7 @@ SomeBlocks.prototype.getInfo = function () {
 
         // Optional: Link to documentation content for this extension.
         // If not present, offer no link.
-        docsURI: 'https://....',
+        //docsURI: 'https://....',
 
         // Required: the list of blocks implemented by this extension,
         // in the order intended for display.
@@ -132,7 +132,7 @@ SomeBlocks.prototype.getInfo = function () {
                 // Optional: list of target types for which this block should appear.
                 // If absent, assume it applies to all builtin targets -- that is:
                 // ['sprite', 'stage']
-                filter: ['someBlocks.wedo2', 'sprite', 'stage']
+                //filter: ['someBlocks.wedo2', 'sprite', 'stage']
             },
             {
                 // Another block...
