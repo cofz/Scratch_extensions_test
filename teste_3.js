@@ -1,32 +1,26 @@
-/*
-Teste para a criação de gráficos
-*/
 
 var Notifications = function () {
 };
 
-/**
- * @return {object} This extension's metadata.
- */
 Notifications.prototype.getInfo = function () {
     return {
         id: 'Criacao_Graficos',
         name: 'Graficos',
         blocks: [
             {
-                opcode: 'notification-show',
+                opcode: 'grafico',
                 blockType: Scratch.BlockType.COMMAND,
                 blockAllThreads: false,
-                text: 'Notify title [TITLE] content [CONTENT] image [IMAGE]',
+                text: 'Grafico [TITLE] cor [CONTENT] image [IMAGE]',
                 func: 'showNotification',
                 arguments: {
                     TITLE: {
                         type: Scratch.ArgumentType.STRING,
-                        defaultValue: 'Hello World!'
+                        defaultValue: 'Tipo de grafico'
                     },
                     CONTENT: {
                         type: Scratch.ArgumentType.STRING,
-                        defaultValue: 'I\'m a notification.'
+                        defaultValue: 'cor do grafico'
                     },
                     IMAGE: {
                         type: Scratch.ArgumentType.STRING,
@@ -81,5 +75,5 @@ Notifications.prototype.notPermitted = function () {
     };
 };
 
-Scratch.extensions.register(new Notifications());
+Scratch.extensions.register(Graficos());
 navigator.Notification.requestPermission();
