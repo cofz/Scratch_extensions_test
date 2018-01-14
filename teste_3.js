@@ -1,8 +1,8 @@
 
 //TESTANTDO
 
-const Cast = require('https://cofz.github.io/Scratch_extensions_test/cast.js');
-const MathUtil = require('https://cofz.github.io/Scratch_extensions_test/math-util.js');
+//const Cast = require('https://cofz.github.io/Scratch_extensions_test/cast.js');
+//const MathUtil = require('https://cofz.github.io/Scratch_extensions_test/math-util.js');
 //const Cast = require('../util/cast');
 //const MathUtil = require('../util/math-util');
 //const Timer = require('../util/timer');
