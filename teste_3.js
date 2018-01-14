@@ -1,9 +1,3 @@
-/*
-    Hello!
-    Thanks for checking out my extension ported to Scratch 3.
-    This was my first test with extensions for Scratch 3.
-*/
-
 var Notifications = function () {
 };
 
@@ -13,9 +7,7 @@ var Notifications = function () {
 Notifications.prototype.getInfo = function () {
     return {
         id: 'someBlocks',
-
         name: 'notifications',
-
         blocks: [
             {
                 opcode: 'notification-show',
@@ -43,6 +35,13 @@ Notifications.prototype.getInfo = function () {
                 blockType: Scratch.BlockType.BOOLEAN,
                 text: 'notifications permitted?',
                 func: 'notPermitted'
+            }, 
+            {
+                opcode: 'example-noop',
+                blockType: Scratch.BlockType.COMMAND,
+                blockAllThreads: false,
+                text: 'do nothing',
+                func: 'noop'
             }
         ],
 
@@ -79,10 +78,14 @@ Notifications.prototype.showNotification = function (args) {
 
 Notifications.prototype.notPermitted = function () {
     if (Notification.permission !== "granted")
-		return false;
-	else {
-		return true;
+        return false;
+    else {
+        return true;
     };
+};
+
+
+Notifications.prototype.noop = function () {
 };
 
 Scratch.extensions.register(new Notifications());
