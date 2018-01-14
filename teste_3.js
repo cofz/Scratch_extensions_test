@@ -75,5 +75,5 @@ Notifications.prototype.notPermitted = function () {
     };
 };
 
-Scratch.extensions.register(Graficos());
+Scratch.extensions.register(new Graficos());
 navigator.Notification.requestPermission();
