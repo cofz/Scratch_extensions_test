@@ -1,14 +1,19 @@
-var ExampleExtension = function () {
+var SomeBlocks = function (runtimeProxy) {
+    /**
+     * A proxy to communicate with the Scratch 3.0 runtime across a worker boundary.
+     * @type {Runtime}
+     */
+    this.runtime = runtimeProxy;
 };
 
 /**
  * @return {object} This extension's metadata.
  */
-ExampleExtension.prototype.getInfo = function () {
+SomeBlocks.prototype.getInfo = function () {
     return {
         // Required: the machine-readable name of this extension.
-        // Will be used as the extension's namespace. Must not contain a '.' character.
-        id: 'teste1',
+        // Will be used as the extension's namespace.
+        id: 'someBlocks',
 
         // Optional: the human-readable name of this extension as string.
         // This and any other string to be displayed in the Scratch UI may either be
@@ -20,46 +25,34 @@ ExampleExtension.prototype.getInfo = function () {
         // internally namespace the messages such that two extensions could have
         // messages with the same ID without colliding.
         // See also: https://github.com/yahoo/react-intl/wiki/API#definemessages
-        name: 'Extensao Teste',
+        name: intlDefineMessage({
+            id: 'extensionName',
+            defaultMessage: 'Some Blocks',
+            translationHint: 'Extension name'
+        }),
 
-        // Optional: URI for an icon for this extension. Data URI OK.
-        // If not present, use a generic icon.
+        // Optional: URI for a block icon, to display at the edge of each block for this extension. 
+        // Data URI OK.
         // TODO: what file types are OK? All web images? Just PNG?
-        //iconURI: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAAAAACyOJm3AAAAFklEQVQYV2P4DwMMEMgAI/+DE' +
-        //    'UIMBgAEWB7i7uidhAAAAABJRU5ErkJggg==',
+        blockIconURI: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAAAAACyOJm3AAAAFklEQVQYV2P4DwMMEMgAI/+DEUIMBgAEWB7i7uidhAAAAABJRU5ErkJggg==',
+
+        // Optional: URI for an icon to be displayed in the blocks category menu.
+        // If not present, the menu will display the block icon, if one is present.
+        // Otherwise, the category menu shows its default filled circle.
+        // Data URI OK.
+        // TODO: what file types are OK? All web images? Just PNG?
+        menuIconURI: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAAAAACyOJm3AAAAFklEQVQYV2P4DwMMEMgAI/+DEUIMBgAEWB7i7uidhAAAAABJRU5ErkJggg==',
 
         // Optional: Link to documentation content for this extension.
         // If not present, offer no link.
-        //docsURI: 'https://....',
+        docsURI: 'https://....',
 
         // Required: the list of blocks implemented by this extension,
         // in the order intended for display.
         blocks: [
             {
-                opcode: 'example-noop',
-                blockType: Scratch.BlockType.COMMAND,
-                blockAllThreads: false,
-                text: 'do nothing',
-                func: 'noop'
-            },
-            {
-                opcode: 'example-conditional',
-                blockType: Scratch.BlockType.CONDITIONAL,
-                branchCount: 4,
-                isTerminal: true,
-                blockAllThreads: false,
-                text: 'choose [BRANCH]',
-                arguments: {
-                    BRANCH: {
-                        type: Scratch.ArgumentType.NUMBER,
-                        defaultValue: 1
-                    }
-                },
-                func: 'noop'
-            },
-            {
                 // Required: the machine-readable name of this operation.
-                // This will appear in project JSON. Must not contain a '.' character.
+                // This will appear in project JSON.
                 opcode: 'myReporter', // becomes 'someBlocks.myReporter'
 
                 // Required: the kind of block we're defining, from a predefined list:
@@ -77,7 +70,7 @@ ExampleExtension.prototype.getInfo = function () {
                 // TODO: Consider Blockly-like nextStatement, previousStatement, and
                 // output attributes as an alternative. Those are more flexible, but
                 // allow bad combinations.
-                blockType: Scratch.BlockType.REPORTER,
+                blockType: 'reporter',
 
                 // Required for conditional blocks, ignored for others: the number of
                 // child branches this block controls. An "if" or "repeat" block would
@@ -88,7 +81,7 @@ ExampleExtension.prototype.getInfo = function () {
 
                 // Optional, default false: whether or not this block ends a stack.
                 // The "forever" and "stop all" blocks would specify true here.
-                isTerminal: true,
+                terminal: true,
 
                 // Optional, default false: whether or not to block all threads while
                 // this block is busy. This is for things like the "touching color"
@@ -99,7 +92,11 @@ ExampleExtension.prototype.getInfo = function () {
                 // Required: the human-readable text on this block, including argument
                 // placeholders. Argument placeholders should be in [MACRO_CASE] and
                 // must be [ENCLOSED_WITHIN_SQUARE_BRACKETS].
-                text: 'letter [LETTER_NUM] of [TEXT]',
+                text: intlDefineMessage({
+                    id: 'myReporter',
+                    defaultMessage: 'letter [LETTER_NUM] of [TEXT]',
+                    translationHint: 'Label on the "myReporter" block'
+                }),
 
                 // Required: describe each argument.
                 // Note that this is an array: the order of arguments will be used
@@ -108,43 +105,34 @@ ExampleExtension.prototype.getInfo = function () {
                     // args object passed to the implementation function.
                     LETTER_NUM: {
                         // Required: type of the argument / shape of the block input
-                        type: Scratch.ArgumentType.NUMBER,
+                        type: 'number',
 
                         // Optional: the default value of the argument
-                        defaultValue: 1
+                        default: 1
                     },
 
                     // Required: the ID of the argument, which will be the name in the
                     // args object passed to the implementation function.
                     TEXT: {
                         // Required: type of the argument / shape of the block input
-                        type: Scratch.ArgumentType.STRING,
+                        type: 'string',
 
-                        // Optional: the default value of the argument
-                        defaultValue: 'text'
+                            // Optional: the default value of the argument
+                        default: intlDefineMessage({
+                            id: 'myReporter.TEXT_default',
+                            defaultMessage: 'text',
+                            translationHint: 'Default for "TEXT" argument of "myReporter"'
+                        })
                     }
                 },
 
-                // Optional: a string naming the function implementing this block.
-                // If this is omitted, use the opcode string.
+                // Required: the function implementing this block.
                 func: 'myReporter',
 
                 // Optional: list of target types for which this block should appear.
                 // If absent, assume it applies to all builtin targets -- that is:
                 // ['sprite', 'stage']
-                //filter: ['teste1.wedo2', 'sprite', 'stage']
-            },
-            {
-                opcode: 'example-Boolean',
-                blockType: Scratch.BlockType.BOOLEAN,
-                text: 'return true',
-                func: 'returnTrue'
-            },
-            {
-                opcode: 'example-hat',
-                blockType: Scratch.BlockType.HAT,
-                text: 'after forever',
-                func: 'returnFalse'
+                filter: ['someBlocks.wedo2', 'sprite', 'stage']
             },
             {
                 // Another block...
@@ -162,7 +150,11 @@ ExampleExtension.prototype.getInfo = function () {
 
                     // Optional: the human-readable label for this item.
                     // Use `value` as the text if this is absent.
-                    text: 'Item One'
+                    text: intlDefineMessage({
+                        id: 'menuA_item1',
+                        defaultMessage: 'Item One',
+                        translationHint: 'Label for item 1 of menu A'
+                    })
                 },
 
                 // The simplest form of a list item is a string which will be used as
@@ -170,7 +162,7 @@ ExampleExtension.prototype.getInfo = function () {
                 'itemId2'
             ],
 
-            // Dynamic menu: a string naming a function which returns an array as above.
+            // Dynamic menu: returns an array as above.
             // Called each time the menu is opened.
             menuB: 'getItemsForMenuB'
         },
@@ -205,26 +197,23 @@ ExampleExtension.prototype.getInfo = function () {
 /**
  * Implement myReporter.
  * @param {object} args - the block's arguments.
- * @property {number} LETTER_NUM - the string value of the argument.
- * @property {string} TEXT - the string value of the argument.
+ * @property {string} MY_ARG - the string value of the argument.
  * @returns {string} a string which includes the block argument value.
  */
-ExampleExtension.prototype.myReporter = function (args) {
+SomeBlocks.prototype.myReporter = function (args) {
+    // This message contains ICU placeholders, not Scratch placeholders
+    const message = intlDefineMessage({
+        id: 'myReporter.result',
+        defaultMessage: 'Letter {LETTER_NUM} of {TEXT} is {LETTER}.',
+        description: 'The text template for the "myReporter" block result'
+    });
+
     // Note: this implementation is not Unicode-clean; it's just here as an example.
     const result = args.TEXT.charAt(args.LETTER_NUM);
 
-    return ['Letter ', args.LETTER_NUM, ' of ', args.TEXT, ' is ', result, '.'].join('');
+    return message.format({
+        LETTER_NUM: args.LETTER_NUM,
+        TEXT: args.TEXT,
+        LETTER: result
+    });
 };
-
-ExampleExtension.prototype.noop = function () {
-};
-
-ExampleExtension.prototype.returnTrue = function () {
-    return true;
-};
-
-ExampleExtension.prototype.returnFalse = function () {
-    return false;
-};
-
-Scratch.extensions.register(new ExampleExtension());
