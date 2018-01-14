@@ -42,6 +42,19 @@ Notifications.prototype.getInfo = function () {
                 blockAllThreads: false,
                 text: 'do nothing',
                 func: 'noop'
+            }, 
+            {
+                opcode: 'example-opcoes',
+                blockType: Scratch.BlockType.COMMAND,
+                blockAllThreads: false,
+                text: 'choose [BRANCH]',
+                arguments: {
+                    BRANCH: {
+                        type: Scratch.ArgumentType.NUMBER,
+                        defaultValue: 1
+                    }
+                },
+                func: 'noop'
             }
         ],
 
