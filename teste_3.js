@@ -55,7 +55,24 @@ Notifications.prototype.getInfo = function () {
                     }
                 },
                 func: 'noop'
+            },
+
+            { 
+                opcode: 'teste-andar',
+                blockType: Scratch.BlockType.COMMAND,
+                blockAllThreads: false,
+                text: 'Ande [NUMERO_PASSOS] passos',
+                func: 'moveSteps',
+                arguments: {
+                    NUMERO_PASSOS: {
+                        type: Scratch.ArgumentType.NUMBER,
+                        defaultValue: '10'
+                    }
+                }
             }
+
+
+
         ],
 
         // translations
@@ -100,6 +117,16 @@ Notifications.prototype.notPermitted = function () {
 
 Notifications.prototype.noop = function () {
 };
+
+
+Notifications.prototype.moveSteps = function(args, util) {
+        const steps = Cast.toNumber(args.NUMERO_PASSOS);
+        const radians = MathUtil.degToRad(90 - util.target.direction);
+        const dx = steps * Math.cos(radians);
+        const dy = steps * Math.sin(radians);
+        util.target.setXY(util.target.x + dx, util.target.y + dy);
+    };
+
 
 Scratch.extensions.register(new Notifications());
 navigator.Notification.requestPermission();
