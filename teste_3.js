@@ -211,8 +211,6 @@ class MathUtil {
 
 module.exports = MathUtil;
 
-const Color = require('../util/color');
-
 /**
  * @fileoverview
  * Utilities for casting and comparing Scratch data-types.
