@@ -11,9 +11,7 @@ var Notifications = function () {
 Notifications.prototype.getInfo = function () {
     return {
         id: 'Criacao_Graficos',
-
         name: 'Graficos',
-
         blocks: [
             {
                 opcode: 'notification-show',
