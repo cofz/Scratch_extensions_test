@@ -1,13 +1,17 @@
+
+
+
 /*
  Test with extensions for Scratch 3.0
 */
-
+/*
 var Notifications = function () {
 };
 
 /**
  * @return {object} This extension's metadata.
  */
+/*
 Notifications.prototype.getInfo = function () {
     return {
         id: 'someBlocks',
@@ -64,6 +68,8 @@ Notifications.prototype.getInfo = function () {
  * @property {string} TEXT - the string value of the argument.
  * @returns {string} a string which includes the block argument value.
  */
+
+/*
 Notifications.prototype.showNotification = function (args) {
     if (Notification.permission !== "granted")
         Notification.requestPermission();
@@ -85,3 +91,4 @@ Notifications.prototype.notPermitted = function () {
 
 Scratch.extensions.register(new Notifications());
 navigator.Notification.requestPermission();
+*/
