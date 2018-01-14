@@ -25,12 +25,12 @@ ExampleExtension.prototype.getInfo = function () {
         // Optional: URI for an icon for this extension. Data URI OK.
         // If not present, use a generic icon.
         // TODO: what file types are OK? All web images? Just PNG?
-        iconURI: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAAAAACyOJm3AAAAFklEQVQYV2P4DwMMEMgAI/+DE' +
-            'UIMBgAEWB7i7uidhAAAAABJRU5ErkJggg==',
+        //iconURI: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAAAAACyOJm3AAAAFklEQVQYV2P4DwMMEMgAI/+DE' +
+        //    'UIMBgAEWB7i7uidhAAAAABJRU5ErkJggg==',
 
         // Optional: Link to documentation content for this extension.
         // If not present, offer no link.
-        docsURI: 'https://....',
+        //docsURI: 'https://....',
 
         // Required: the list of blocks implemented by this extension,
         // in the order intended for display.
@@ -132,7 +132,7 @@ ExampleExtension.prototype.getInfo = function () {
                 // Optional: list of target types for which this block should appear.
                 // If absent, assume it applies to all builtin targets -- that is:
                 // ['sprite', 'stage']
-                filter: ['teste1.wedo2', 'sprite', 'stage']
+                //filter: ['teste1.wedo2', 'sprite', 'stage']
             },
             {
                 opcode: 'example-Boolean',
